@@ -105,6 +105,9 @@ $(MID_SUBDIR)/mus_cycling.s: %.s: %.mid
 $(MID_SUBDIR)/mus_encounter_champion.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G100 -V076
 
+$(MID_SUBDIR)/greenOnions0.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G100 -V076
+
 $(MID_SUBDIR)/mus_petalburg_woods.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G018 -V080
 
