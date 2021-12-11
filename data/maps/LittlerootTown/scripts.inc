@@ -260,6 +260,11 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale::
 
 LittlerootTown_EventScript_FatMan::
 	msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC
+	adddecoration DECOR_TOGEPI_DOLL
+	adddecoration DECOR_JIGGLYPUFF_DOLL
+	adddecoration DECOR_SNORLAX_DOLL
+	adddecoration DECOR_DUSKULL_DOLL
+	adddecoration DECOR_AZURILL_DOLL
 	end
 
 LittlerootTown_EventScript_Boy::
