@@ -2064,10 +2064,10 @@
     {
       "id": "LAYOUT_SECRET_BASE_TREE2",
       "name": "SecretBase_Tree2_Layout",
-      "width": 7,
-      "height": 16,
-      "primary_tileset": "gTileset_SecretBase",
-      "secondary_tileset": "gTileset_SecretBaseTree",
+      "width": 30,
+      "height": 17,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_arbol",
       "border_filepath": "data/layouts/SecretBase_Tree2/border.bin",
       "blockdata_filepath": "data/layouts/SecretBase_Tree2/map.bin"
     },
