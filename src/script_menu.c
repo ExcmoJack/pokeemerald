@@ -575,7 +575,7 @@ static void Task_PokemonPicWindow(u8 taskId)
     }
 }
 
-bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y)
+bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y, bool8 hideBox)
 {
     u8 taskId;
     u8 spriteId;
@@ -594,7 +594,7 @@ bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y)
         gTasks[taskId].tMonSpriteId = spriteId;
         gSprites[spriteId].callback = SpriteCallbackDummy;
         gSprites[spriteId].oam.priority = 0;
-        SetStandardWindowBorderStyle(gTasks[taskId].tWindowId, 1);
+        if(!hideBox) SetStandardWindowBorderStyle(gTasks[taskId].tWindowId, 1);
         ScheduleBgCopyTilemapToVram(0);
         return TRUE;
     }
