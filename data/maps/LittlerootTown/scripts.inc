@@ -260,11 +260,6 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale::
 
 LittlerootTown_EventScript_FatMan::
 	msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC
-	adddecoration DECOR_TOGEPI_DOLL
-	adddecoration DECOR_JIGGLYPUFF_DOLL
-	adddecoration DECOR_SNORLAX_DOLL
-	adddecoration DECOR_DUSKULL_DOLL
-	adddecoration DECOR_AZURILL_DOLL
 	end
 
 LittlerootTown_EventScript_Boy::
@@ -411,10 +406,39 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
 	end
 
 LittlerootTown_EventScript_TownSign::
-	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
+	lock
+	adddecoration DECOR_SNORLAX_DOLL
+	adddecoration DECOR_PICHU_DOLL
+	adddecoration DECOR_PIKACHU_DOLL
+	adddecoration DECOR_MARILL_DOLL
+	adddecoration DECOR_TOGEPI_DOLL
+	adddecoration DECOR_CYNDAQUIL_DOLL
+	adddecoration DECOR_CHIKORITA_DOLL
+	@ adddecoration DECOR_TOTODILE_DOLL
+	adddecoration DECOR_JIGGLYPUFF_DOLL
+	adddecoration DECOR_MEOWTH_DOLL
+	adddecoration DECOR_CLEFAIRY_DOLL
+	adddecoration DECOR_DITTO_DOLL
+	adddecoration DECOR_SMOOCHUM_DOLL
+	adddecoration DECOR_TREECKO_DOLL
+	adddecoration DECOR_TORCHIC_DOLL
+	adddecoration DECOR_MUDKIP_DOLL
+	adddecoration DECOR_DUSKULL_DOLL
+	@ adddecoration DECOR_WYNAUT_DOLL
+	adddecoration DECOR_BALTOY_DOLL
+	adddecoration DECOR_KECLEON_DOLL
+	adddecoration DECOR_AZURILL_DOLL
+	adddecoration DECOR_SKITTY_DOLL
+	@ adddecoration DECOR_SWABLU_DOLL
+	adddecoration DECOR_GULPIN_DOLL
+	adddecoration DECOR_LOTAD_DOLL
+	adddecoration DECOR_SEEDOT_DOLL
+	warp MAP_FONDO, 0xFF, 9, 9
 	end
 
 LittlerootTown_EventScript_BirchsLabSign::
+	callnative resetMsgboxAlpha
+	callnative setMsgboxDown
 	msgbox LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN
 	end
 
@@ -1052,8 +1076,8 @@ LittlerootTown_Text_GoodLuckCatchingPokemon:
 	.string "Good luck!$"
 
 LittlerootTown_Text_TownSign:
-	.string "LITTLEROOT TOWN\n"
-	.string "“A town that can't be shaded any hue.”$"
+	.string "{SHIFT_TEXT 64}12 días de Navidad\p"
+	.string "{SHIFT_TEXT 128}Día 1$"
 
 LittlerootTown_Text_ProfBirchsLab:
 	.string "PROF. BIRCH'S POKéMON LAB$"
