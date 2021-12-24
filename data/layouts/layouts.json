@@ -4410,6 +4410,46 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARBOL",
+      "name": "Arbol_Layout",
+      "width": 21,
+      "height": 23,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_piso_franco",
+      "border_filepath": "data/layouts/Arbol/border.bin",
+      "blockdata_filepath": "data/layouts/Arbol/map.bin"
+    },
+    {
+      "id": "LAYOUT_EXTERIOR",
+      "name": "Exterior_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_ExteriorOC",
+      "secondary_tileset": "gTileset_CasasOC",
+      "border_filepath": "data/layouts/Exterior/border.bin",
+      "blockdata_filepath": "data/layouts/Exterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_FONDO",
+      "name": "Fondo_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_piso_franco",
+      "border_filepath": "data/layouts/Fondo/border.bin",
+      "blockdata_filepath": "data/layouts/Fondo/map.bin"
+    },
+    {
+      "id": "LAYOUT_PISO_FRANCO",
+      "name": "PisoFranco_Layout",
+      "width": 21,
+      "height": 23,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_piso_franco",
+      "border_filepath": "data/layouts/PisoFranco/border.bin",
+      "blockdata_filepath": "data/layouts/PisoFranco/map.bin"
     }
   ]
 }
