@@ -841,3 +841,36 @@ gTileset_arbol::
 	.4byte gMetatiles_arbol
 	.4byte gMetatileAttributes_arbol
 	.4byte NULL
+
+	.align 2
+gTileset_piso_franco::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_piso_franco
+	.4byte gTilesetPalettes_piso_franco
+	.4byte gMetatiles_piso_franco
+	.4byte gMetatileAttributes_piso_franco
+	.4byte NULL
+
+	.align 2
+gTileset_ExteriorOC::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_ExteriorOC
+	.4byte gTilesetPalettes_ExteriorOC
+	.4byte gMetatiles_ExteriorOC
+	.4byte gMetatileAttributes_ExteriorOC
+	.4byte NULL
+
+	.align 2
+gTileset_CasasOC::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_CasasOC
+	.4byte gTilesetPalettes_CasasOC
+	.4byte gMetatiles_CasasOC
+	.4byte gMetatileAttributes_CasasOC
+	.4byte NULL

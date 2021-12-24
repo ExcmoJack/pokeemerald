@@ -1749,3 +1749,63 @@ gTilesetPalettes_arbol::
 	.align 2
 gTilesetTiles_arbol::
 	.incbin "data/tilesets/secondary/arbol/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_piso_franco::
+	.incbin "data/tilesets/secondary/piso_franco/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/piso_franco/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_piso_franco::
+	.incbin "data/tilesets/secondary/piso_franco/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_ExteriorOC::
+	.incbin "data/tilesets/primary/exterioroc/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/exterioroc/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_ExteriorOC::
+	.incbin "data/tilesets/primary/exterioroc/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_CasasOC::
+	.incbin "data/tilesets/secondary/casasoc/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/casasoc/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_CasasOC::
+	.incbin "data/tilesets/secondary/casasoc/tiles.4bpp.lz"

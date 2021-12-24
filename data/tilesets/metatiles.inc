@@ -566,3 +566,24 @@ gMetatiles_arbol::
 gMetatileAttributes_arbol::
 	.incbin "data/tilesets/secondary/arbol/metatile_attributes.bin"
 	
+	.align 1
+gMetatiles_piso_franco::
+	.incbin "data/tilesets/secondary/piso_franco/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_piso_franco::
+	.incbin "data/tilesets/secondary/piso_franco/metatile_attributes.bin"
+	.align 1
+gMetatiles_ExteriorOC::
+	.incbin "data/tilesets/primary/exterioroc/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_ExteriorOC::
+	.incbin "data/tilesets/primary/exterioroc/metatile_attributes.bin"
+	.align 1
+gMetatiles_CasasOC::
+	.incbin "data/tilesets/secondary/casasoc/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_CasasOC::
+	.incbin "data/tilesets/secondary/casasoc/metatile_attributes.bin"
