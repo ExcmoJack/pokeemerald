@@ -769,13 +769,13 @@ SecretBase_Text_RegistrationCompleted:
 	.string "Registration completed.$"
 
 SecretBase_Text_DataUnregistered:
-	.string "Data has been unregistered.$"
+	.string "Le falta el toque final, si me permites…$"
 
 SecretBase_Text_BootUpPC:
 	.string "{PLAYER} booted up the PC.$"
 
 SecretBase_Text_WhatWouldYouLikeToDo:
-	.string "What would you like to do?$"
+	.string "¡Hale, ya he dejado el árbol\ncolonisado!$"
 
 SecretBase_Text_RegistryInfo:
 	.string "Once registered, a SECRET BASE will not\n"

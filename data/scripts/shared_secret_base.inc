@@ -1,4 +1,5 @@
 SecretBase_MapScripts::
+    map_script MAP_SCRIPT_ON_LOAD, SecretBase_OnLoad
     map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SecretBase_OnWarp
     map_script MAP_SCRIPT_ON_TRANSITION, SecretBase_OnTransition
     map_script MAP_SCRIPT_ON_FRAME_TABLE, SecretBase_OnFrame
@@ -6,8 +7,44 @@ SecretBase_MapScripts::
     .byte 0
 
 SecretBase_OnWarp:
+    map_script_2 VAR_CONCURSO_1, 0, Concurso_MirarArriba
+    map_script_2 VAR_CONCURSO_1, 1, Concurso_Desaparecer
     map_script_2 VAR_SECRET_BASE_INITIALIZED, 0, SecretBase_EventScript_InitDecorations
     .2byte 0
+
+Concurso_MirarArriba:
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+    end
+
+Concurso_Desaparecer:
+    applymovement OBJ_EVENT_ID_PLAYER, HidePlayer_Movement
+    end
+
+HidePlayer_Movement:
+	set_invisible
+	step_end
+
+SecretBase_OnLoad:
+    compare VAR_CONCURSO_1, 1
+    goto_if_eq Concurso_Luces
+    end
+
+Concurso_Luces:
+    setmetatile 13, 5, 0x25B, 0
+    setmetatile 14, 5, 0x25C, 0
+    setmetatile 15, 5, 0x25D, 0
+    setmetatile 13, 5, 0x25B, 0
+    setmetatile 12, 7, 0x26A, 0
+    setmetatile 13, 7, 0x26B, 0
+    setmetatile 14, 7, 0x26C, 0
+    setmetatile 15, 7, 0x26D, 0
+    setmetatile 12, 9, 0x27A, 0
+    setmetatile 13, 9, 0x27B, 0
+    setmetatile 14, 9, 0x27C, 0
+    setmetatile 15, 9, 0x27D, 0
+    setmetatile 16, 9, 0x27E, 0
+    special DrawWholeMapView
+    return
 
 SecretBase_OnTransition:
     call SecretBase_EventScript_SetDecorationFlags
@@ -16,8 +53,27 @@ SecretBase_OnTransition:
     end
 
 SecretBase_OnFrame:
-    map_script_2 VAR_INIT_SECRET_BASE, 0, SecretBase_EventScript_FirstEntrance
+    @ map_script_2 VAR_INIT_SECRET_BASE, 0, SecretBase_EventScript_FirstEntrance
+    map_script_2 VAR_CONCURSO_1, 0, SecretBase_EventScript_PCDecorationMenu
+    map_script_2 VAR_CONCURSO_1, 1, SecretBase_EventScript_VolverAlPiso
     .2byte 0
+
+SecretBase_EventScript_VolverAlPiso:
+    lock
+    delay 180
+    showmonpic SPECIES_WYNAUT, 21, 6
+    msgbox SecretBase_Text_Fin, MSGBOX_SIGN
+    closemessage
+    hidemonpic
+    clearflag FLAG_LUCES
+    setvar VAR_CONCURSO_1, 2
+    setvar VAR_CONCURSO_0, 4
+    warp MAP_PISO_FRANCO, 0xFF, 9, 9
+    release
+    end
+
+SecretBase_Text_Fin:
+    .string "¡Ahora sí! ¡Ha quedado genial, Yuri!$"
 
 SecretBase_OnResume:
     setstepcallback STEP_CB_SECRET_BASE
@@ -36,8 +92,10 @@ SecretBase_EventScript_PC::
     end
 
 SecretBase_EventScript_PCShowMainMenu::
-    message SecretBase_Text_WhatWouldYouLikeToDo
-    waitmessage
+    showmonpic SPECIES_LUCARIO, 21, 6
+    msgbox SecretBase_Text_WhatWouldYouLikeToDo, MSGBOX_DEFAULT
+    closemessage
+    hidemonpic
     goto_if_set FLAG_SECRET_BASE_REGISTRY_ENABLED, SecretBase_EventScript_PCMainMenuWithRegister
     goto SecretBase_EventScript_PCMainMenuWithoutRegister
     end
@@ -57,14 +115,30 @@ SecretBase_EventScript_PCMainMenuWithRegister::
     case MULTI_B_PRESSED, SecretBase_EventScript_PCTurnOff
     end
 
-SecretBase_EventScript_PCMainMenuWithoutRegister::
-    multichoice 0, 0, MULTI_BASE_PC_NO_REGISTRY, FALSE
-    switch VAR_RESULT
-    case 0, SecretBase_EventScript_PCDecorationMenu
-    case 1, SecretBase_EventScript_PCPackUp
-    case 2, SecretBase_EventScript_PCTurnOff
-    case MULTI_B_PRESSED, SecretBase_EventScript_PCTurnOff
+SecretBase_EventScript_PCMainMenuWithoutRegister:: @@ Tras la decoración el script continúa aquí
+    showmonpic SPECIES_WYNAUT, 21, 6
+    msgbox SecretBase_Text_DataUnregistered, MSGBOX_SIGN
+    closemessage
+    hidemonpic
+    setvar VAR_CONCURSO_1, 1
+    fadescreen FADE_TO_BLACK
+    special SpawnCameraObject
+    applymovement OBJ_EVENT_ID_PLAYER, HidePlayer_Movement
+    applymovement OBJ_EVENT_ID_CAMERA, Concurso_CamAlCentro
+    waitmovement OBJ_EVENT_ID_CAMERA
+    call Concurso_Luces
+    fadescreen FADE_FROM_BLACK
+    special RemoveCameraObject
+    @ warp MAP_SECRET_BASE_TREE2, 0xFF, 14, 8
     end
+
+Concurso_CamAlCentro:
+    walk_diag_northeast
+    walk_diag_northeast
+    walk_diag_northeast
+    walk_diag_northeast
+    walk_diag_northeast
+    step_end
 
 SecretBase_EventScript_PCPackUp::
     msgbox SecretBase_Text_AllDecorationsWillBeReturned, MSGBOX_YESNO
