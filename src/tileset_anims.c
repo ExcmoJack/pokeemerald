@@ -41,6 +41,7 @@ static void TilesetAnim_Cave(u16);
 static void TilesetAnim_EliteFour(u16);
 static void TilesetAnim_MauvilleGym(u16);
 static void TilesetAnim_BikeShop(u16);
+static void TilesetAnim_Arbol(u16);
 static void TilesetAnim_BattlePyramid(u16);
 static void TilesetAnim_BattleDome(u16);
 static void QueueAnimTiles_General_Flower(u16);
@@ -55,6 +56,7 @@ static void QueueAnimTiles_Dewford_Flag(u16);
 static void QueueAnimTiles_Slateport_Balloons(u16);
 static void QueueAnimTiles_Mauville_Flowers(u16, u8);
 static void QueueAnimTiles_BikeShop_BlinkingLights(u16);
+static void QueueAnimTiles_Arbol_Light(u16);
 static void QueueAnimTiles_BattlePyramid_Torch(u16);
 static void QueueAnimTiles_BattlePyramid_StatueShadow(u16);
 static void BlendAnimPalette_BattleDome_FloorLights(u16);
@@ -525,6 +527,15 @@ const u16 tileset_anims_space_11[224] = {};
 
 const u16 gTilesetAnims_Unused2_Frame1[] = INCBIN_U16("data/tilesets/secondary/unused_2/1.4bpp");
 
+const u16 gTilesetAnims_Arbol_Luces1_Frame0[] = INCBIN_U16("data/tilesets/secondary/arbol/anim/light/0.4bpp");
+const u16 gTilesetAnims_Arbol_Luces1_Frame1[] = INCBIN_U16("data/tilesets/secondary/arbol/anim/light/1.4bpp");
+const u16 tileset_anims_space_12[16] = {};
+
+const u16 *const gTilesetAnims_Arbol_Luces1[] = {
+    gTilesetAnims_Arbol_Luces1_Frame0,
+    gTilesetAnims_Arbol_Luces1_Frame1
+};
+
 const u16 *const gTilesetAnims_BattlePyramid_Torch[] = {
     gTilesetAnims_BattlePyramid_Torch_Frame0,
     gTilesetAnims_BattlePyramid_Torch_Frame1,
@@ -834,6 +845,13 @@ void InitTilesetAnim_BattleDome(void)
     sSecondaryTilesetAnimCallback = TilesetAnim_BattleDome;
 }
 
+void InitTilesetAnim_Arbol(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
+    sSecondaryTilesetAnimCallback = TilesetAnim_Arbol;
+}
+
 static void TilesetAnim_Rustboro(u16 timer)
 {
     if (timer % 8 == 0)
@@ -1089,6 +1107,12 @@ static void TilesetAnim_BikeShop(u16 timer)
         QueueAnimTiles_BikeShop_BlinkingLights(timer >> 2);
 }
 
+static void TilesetAnim_Arbol(u16 timer)
+{
+    if (timer % 4 == 0)
+        QueueAnimTiles_Arbol_Light(timer >> 2);
+}
+
 static void TilesetAnim_BattlePyramid(u16 timer)
 {
     if (timer % 8 == 0)
@@ -1145,6 +1169,12 @@ static void QueueAnimTiles_BikeShop_BlinkingLights(u16 timer)
 {
     u16 i = timer % 2;
     AppendTilesetAnimToBuffer(gTilesetAnims_BikeShop_BlinkingLights[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 496)), 0x120);
+}
+
+static void QueueAnimTiles_Arbol_Light(u16 timer)
+{
+    u16 i = timer % 2;
+    AppendTilesetAnimToBuffer(gTilesetAnims_Arbol_Luces1[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 448)), 0x120);
 }
 
 static void QueueAnimTiles_Sootopolis_StormyWater(u16 timer)

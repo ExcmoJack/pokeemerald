@@ -1,10 +1,12 @@
 #include "global.h"
+#include "event_data.h"
 #include "text.h"
 #include "text_window.h"
 #include "window.h"
 #include "palette.h"
 #include "bg.h"
 #include "graphics.h"
+#include "gpu_regs.h"
 
 // const rom data
 const u8 gTextWindowFrame1_Gfx[] = INCBIN_U8("graphics/text_window/1.4bpp");
@@ -110,7 +112,7 @@ void LoadWindowGfx(u8 windowId, u8 frameId, u16 destOffset, u8 palOffset)
 
 void LoadUserWindowBorderGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
-    LoadWindowGfx(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palOffset);
+        LoadWindowGfx(windowId, gSaveBlock2Ptr->optionsWindowFrameType, destOffset, palOffset);
 }
 
 void DrawTextBorderOuter(u8 windowId, u16 tileNum, u8 palNum)
@@ -187,11 +189,44 @@ const u16 *GetTextWindowPalette(u8 id)
 
 const u16 *GetOverworldTextboxPalettePtr(void)
 {
-    return gMessageBox_Pal;
+    if(!FlagGet(FLAG_BLACK_MSGBOX)) return gMessageBox_Pal;
+    else return gMessageBoxBlack_Pal;
 }
 
 void sub_8098C6C(u8 bg, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(bg, sWindowFrames[gSaveBlock2Ptr->optionsWindowFrameType].tiles, 0x120, destOffset);
     LoadPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->pal, palOffset, 0x20);
+}
+
+void setMsgboxAlpha()
+{
+    FlagSet(FLAG_BLACK_MSGBOX);
+    // LoadPalette(gMessageBoxBlack_Pal, 0xF0, 0x20);
+    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 4));
+    SetGpuReg(REG_OFFSET_WININ, 0x1F3F);
+}
+
+void resetMsgboxAlpha()
+{
+    FlagClear(FLAG_BLACK_MSGBOX);
+    // LoadPalette(GetOverworldTextboxPalettePtr(), 0xF0, 0x20);
+    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_NONE);
+    SetGpuReg(REG_OFFSET_WININ, 0x1F1F);
+}
+
+void setMsgboxUp()
+{
+    SetGpuReg(REG_OFFSET_BG0VOFS, 0x70);
+}
+
+void setMsgboxCenter()
+{
+    SetGpuReg(REG_OFFSET_BG0VOFS, 0x38);
+}
+
+void setMsgboxDown()
+{
+    SetGpuReg(REG_OFFSET_BG0VOFS, 0x00);
 }

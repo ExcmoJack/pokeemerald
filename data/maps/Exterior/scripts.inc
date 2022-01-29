@@ -50,7 +50,7 @@ Exterior_Intro:
 	hidemonpic
 	setvar VAR_CONCURSO_0, 2
 	delay 40
-	warp MAP_FONDO, 0xFF, 9, 9
+	warpsilent MAP_FONDO, 0xFF, 9, 9
 	release
 	end
 

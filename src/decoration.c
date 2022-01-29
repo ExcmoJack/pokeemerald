@@ -112,7 +112,7 @@ EWRAM_DATA static u8 sPlayerRoomItemsIndicesBuffer[DECOR_MAX_PLAYERS_HOUSE] = {}
 EWRAM_DATA static u16 sDecorationsCursorPos = 0;
 EWRAM_DATA static u16 sDecorationsScrollOffset = 0;
 EWRAM_DATA u8 gCurDecorationIndex = 0;
-EWRAM_DATA static u8 sCurDecorationCategory = DECORCAT_DESK;
+EWRAM_DATA static u8 sCurDecorationCategory = DECORCAT_DOLL;
 EWRAM_DATA static u32 sFiller[2] = {};
 EWRAM_DATA static struct DecorationPCContext sDecorationContext = {};
 EWRAM_DATA static u8 sDecorMenuWindowIds[WINDOW_COUNT] = {};
@@ -231,10 +231,6 @@ static const struct MenuAction sDecorationMainMenuActions[] =
         .func = { .void_u8 = DecorationMenuAction_PutAway },
     },
     {
-        .text = gText_Toss2,
-        .func = { .void_u8 = DecorationMenuAction_Toss },
-    },
-    {
         .text = gText_Cancel,
         .func = { .void_u8 = DecorationMenuAction_Cancel },
     },
@@ -244,7 +240,6 @@ static const u8 *const sSecretBasePCMenuItemDescriptions[] =
 {
     gText_PutOutSelectedDecorItem,
     gText_StoreChosenDecorInPC,
-    gText_ThrowAwayUnwantedDecors,
     gText_GoBackPrevMenu
 };
 
@@ -520,6 +515,18 @@ void InitDecorationContextItems(void)
     }
 }
 
+static bool8 HasDecorationSpace(void)
+{
+    u16 i;
+    for (i = 0; i < sDecorationContext.size; i++)
+    {
+        if (sDecorationContext.items[i] == DECOR_NONE)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 static u8 AddDecorationWindow(u8 windowIndex)
 {
     u8 *windowId;
@@ -606,7 +613,14 @@ static void HandleDecorationActionsMenuInput(u8 taskId)
             break;
         case MENU_B_PRESSED:
             PlaySE(SE_SELECT);
-            DecorationMenuAction_Cancel(taskId);
+            if (HasDecorationSpace() != TRUE)
+            {
+                DecorationMenuAction_Cancel(taskId);
+            }
+            else
+            {
+                PlaySE(SE_FAILURE);
+            }
             break;
         }
     }
@@ -696,7 +710,7 @@ static void SecretBasePC_PrepMenuForSelectingStoredDecors(u8 taskId)
 static void InitDecorationCategoriesWindow(u8 taskId)
 {
     u8 windowId = AddDecorationWindow(WINDOW_DECORATION_CATEGORIES);
-    PrintDecorationCategoryMenuItems(taskId);
+    // PrintDecorationCategoryMenuItems(taskId);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, DECORCAT_COUNT + 1, sCurDecorationCategory);
     gTasks[taskId].func = HandleDecorationCategoriesMenuInput;
 }
@@ -704,7 +718,7 @@ static void InitDecorationCategoriesWindow(u8 taskId)
 static void ReinitDecorationCategoriesWindow(u8 taskId)
 {
     FillWindowPixelBuffer(sDecorMenuWindowIds[WINDOW_DECORATION_CATEGORIES], PIXEL_FILL(1));
-    PrintDecorationCategoryMenuItems(taskId);
+    // PrintDecorationCategoryMenuItems(taskId);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(sDecorMenuWindowIds[WINDOW_DECORATION_CATEGORIES], DECORCAT_COUNT + 1, sCurDecorationCategory);
     gTasks[taskId].func = HandleDecorationCategoriesMenuInput;
 }
@@ -772,16 +786,16 @@ static void HandleDecorationCategoriesMenuInput(u8 taskId)
         s8 input = Menu_ProcessInput();
         switch (input)
         {
-        case MENU_B_PRESSED:
-        case DECORCAT_COUNT: // CANCEL
-            PlaySE(SE_SELECT);
-            ExitDecorationCategoriesMenu(taskId);
-            break;
-        case MENU_NOTHING_CHOSEN:
-            break;
+        // case MENU_B_PRESSED:
+        // case DECORCAT_COUNT: // CANCEL
+        //     PlaySE(SE_SELECT);
+        //     ExitDecorationCategoriesMenu(taskId);
+        //     break;
+        // case MENU_NOTHING_CHOSEN:
+        //     break;
         default:
             PlaySE(SE_SELECT);
-            sCurDecorationCategory = input;
+            sCurDecorationCategory = DECORCAT_DOLL;
             SelectDecorationCategory(taskId);
             break;
         }
@@ -992,6 +1006,7 @@ static void HandleDecorationItemsMenuInput(u8 taskId)
         case LIST_CANCEL:
             PlaySE(SE_SELECT);
             sSecretBasePC_SelectedDecorationActions[tDecorationMenuCommand][1](taskId);
+            // ExitDecorationCategoriesMenu(taskId);
             break;
         default:
             PlaySE(SE_SELECT);
@@ -1162,7 +1177,8 @@ static void DecorationItemsMenuAction_Cancel(u8 taskId)
     RemoveDecorationItemsOtherWindows();
     DestroyListMenuTask(tMenuTaskId, NULL, NULL);
     free(sDecorationItemsMenu);
-    ReinitDecorationCategoriesWindow(taskId);
+    // ReinitDecorationCategoriesWindow(taskId);
+    ExitDecorationCategoriesMenu(taskId);
 }
 
 static void SetInitialPositions(u8 taskId)
@@ -1297,18 +1313,6 @@ void SetDecoration(void)
             break;
         }
     }
-}
-
-static bool8 HasDecorationSpace(void)
-{
-    u16 i;
-    for (i = 0; i < sDecorationContext.size; i++)
-    {
-        if (sDecorationContext.items[i] == DECOR_NONE)
-            return TRUE;
-    }
-
-    return FALSE;
 }
 
 static void DecorationItemsMenuAction_AttemptPlace(u8 taskId)

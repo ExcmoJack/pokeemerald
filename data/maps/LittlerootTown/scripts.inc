@@ -433,7 +433,7 @@ LittlerootTown_EventScript_TownSign::
 	adddecoration DECOR_GULPIN_DOLL
 	adddecoration DECOR_LOTAD_DOLL
 	adddecoration DECOR_SEEDOT_DOLL
-	warp MAP_FONDO, 0xFF, 9, 9
+	warpsilent MAP_FONDO, 0xFF, 9, 9
 	end
 
 LittlerootTown_EventScript_BirchsLabSign::

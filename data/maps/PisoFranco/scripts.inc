@@ -208,7 +208,7 @@ PisoFranco_Evento_1:
 	closemessage
 	hidemonpic
 	setvar VAR_CONCURSO_0, 3
-	warp MAP_SECRET_BASE_TREE2, 0xFF, 9, 13
+	warpsilent MAP_SECRET_BASE_TREE2, 0xFF, 9, 13
 	release
 	end
 
@@ -231,11 +231,14 @@ PisoFranco_Evento_2:
 	waitmovement LOCALID_SERGIO
 	showmonpic SPECIES_GIRAFARIG, MUG_X, MUG_Y
 	msgbox PisoFranco_Evento_Text_Sergio_10, MSGBOX_DEFAULT
+	applymovement LOCALID_SERGIO, Common_Movement_WalkInPlaceFastestDown
+	waitmovement LOCALID_SERGIO
+	msgbox PisoFranco_Evento_Text_Sergio_11, MSGBOX_DEFAULT
 	closemessage
 	hidemonpic
 	delay 30
 	setvar VAR_CONCURSO_0, 5
-	warp MAP_FONDO, 0xFF, 9, 9
+	warpsilent MAP_FONDO, 0xFF, 9, 9
 	release
 	end
 
@@ -457,10 +460,13 @@ PisoFranco_Evento_Text_Yuri_4:
 	.string "del {COLOR RED}Bomberman Tournament{COLOR DARK_GRAY}!$"
 
 PisoFranco_Evento_Text_Yuri_5:
-	.string "¡Hale, po' ya'ta!$"
+	.string "¡Hale, po' ya'ta!\n¡Con los {COLOR RED}regalos{COLOR DARK_GRAY} y todo!$"
 
 PisoFranco_Evento_Text_Sergio_9:
 	.string "Buen trabajo, {COLOR DYNAMIC_COLOR5}Yuri{COLOR DARK_GRAY}.$"
 
 PisoFranco_Evento_Text_Sergio_10:
 	.string "Mmm. ¿Qué ha sido eso?$"
+
+PisoFranco_Evento_Text_Sergio_11:
+	.string "¡Bah! Seguro que no es nada…$"

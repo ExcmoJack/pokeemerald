@@ -32,7 +32,7 @@ Fondo_Intro:
 	setflag FLAG_LUCES
 	setflag FLAG_JAIZU
 	setvar VAR_CONCURSO_0, 1
-	warp MAP_EXTERIOR, 0xFF, 9, 9
+	warpsilent MAP_EXTERIOR, 0xFF, 9, 9
 	release
 	end
 
@@ -41,7 +41,7 @@ Fondo_Intro2:
 	callnative setMsgboxAlpha
 	callnative setMsgboxCenter
 	msgbox Fondo_Dia25_Text, MSGBOX_DEFAULT
-	warp MAP_PISO_FRANCO, 0xFF, 9, 9
+	warpsilent MAP_PISO_FRANCO, 0xFF, 9, 9
 	delay 120
 	release
 	end
@@ -66,7 +66,7 @@ Fondo_Dia1_Text:
 	.string "{SHIFT_TEXT 86}Día 1$"
 
 Fondo_Dia25_Text:
-	.string "{SHIFT_TEXT 86}Día 25$"
+	.string "{SHIFT_TEXT 86}Día 24$"
 
 Fondo_Continuara_Text:
 	.string "{SHIFT_TEXT 70}Continuará…$"

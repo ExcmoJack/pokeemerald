@@ -68,12 +68,12 @@ SecretBase_EventScript_VolverAlPiso:
     clearflag FLAG_LUCES
     setvar VAR_CONCURSO_1, 2
     setvar VAR_CONCURSO_0, 4
-    warp MAP_PISO_FRANCO, 0xFF, 9, 9
+    warpsilent MAP_PISO_FRANCO, 0xFF, 9, 9
     release
     end
 
 SecretBase_Text_Fin:
-    .string "¡Ahora sí! ¡Ha quedado genial, Yuri!$"
+    .string "¡Ahora sí! ¡Ha quedado genial, {COLOR DYNAMIC_COLOR5}Yuri{COLOR DARK_GRAY}!$"
 
 SecretBase_OnResume:
     setstepcallback STEP_CB_SECRET_BASE

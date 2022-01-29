@@ -348,129 +348,129 @@ const u8 DecorDesc_KISS_POSTER[] = _(
         "a SMOOCHUM print.");
 
 const u8 DecorDesc_PICHU_DOLL[] = _(
-    "A PICHU doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_PIKACHU_DOLL[] = _(
-    "A PIKACHU doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_MARILL_DOLL[] = _(
-    "A MARILL doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_TOGEPI_DOLL[] = _(
-    "A TOGEPI doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_CYNDAQUIL_DOLL[] = _(
-    "A CYNDAQUIL doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_CHIKORITA_DOLL[] = _(
-    "A CHIKORITA doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_TOTODILE_DOLL[] = _(
-    "A TOTODILE doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_JIGGLYPUFF_DOLL[] = _(
-    "A JIGGLYPUFF doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_MEOWTH_DOLL[] = _(
-    "A MEOWTH doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_CLEFAIRY_DOLL[] = _(
-    "A CLEFAIRY doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_DITTO_DOLL[] = _(
-    "A DITTO doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_SMOOCHUM_DOLL[] = _(
-    "A SMOOCHUM doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_TREECKO_DOLL[] = _(
-    "A TREECKO doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_TORCHIC_DOLL[] = _(
-    "A TORCHIC doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_MUDKIP_DOLL[] = _(
-    "A MUDKIP doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_DUSKULL_DOLL[] = _(
-    "A DUSKULL doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_WYNAUT_DOLL[] = _(
-    "A WYNAUT doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_BALTOY_DOLL[] = _(
-    "A BALTOY doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_KECLEON_DOLL[] = _(
-    "A KECLEON doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_AZURILL_DOLL[] = _(
-    "An AZURILL doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_SKITTY_DOLL[] = _(
-    "A SKITTY doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_SWABLU_DOLL[] = _(
-    "A SWABLU doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_GULPIN_DOLL[] = _(
-    "A GULPIN doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_LOTAD_DOLL[] = _(
-    "A LOTAD doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_SEEDOT_DOLL[] = _(
-    "A SEEDOT doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_PIKA_CUSHION[] = _(
     "A PIKACHU cushion.\n"
@@ -523,9 +523,9 @@ const u8 DecorDesc_WATER_CUSHION[] = _(
         "a mat or a desk.");
 
 const u8 DecorDesc_SNORLAX_DOLL[] = _(
-    "A large doll.\n"
-        "Place it on a mat\n"
-        "or a desk.");
+    "Elige una\n"
+        "decoración para\n"
+        "poner en el árbol.");
 
 const u8 DecorDesc_RHYDON_DOLL[] = _(
     "A large doll.\n"
