@@ -11,6 +11,7 @@
 #include "field_effect.h"
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
+#include "field_weather.h"
 #include "fieldmap.h"
 #include "mauville_old_man.h"
 #include "metatile_behavior.h"
@@ -134,7 +135,6 @@ static void UpdateObjectEventVisibility(struct ObjectEvent *, struct Sprite *);
 static void MakeSpriteTemplateFromObjectEventTemplate(struct ObjectEventTemplate *, struct SpriteTemplate *, const struct SubspriteTable **);
 static void GetObjectEventMovingCameraOffset(s16 *, s16 *);
 static struct ObjectEventTemplate *GetObjectEventTemplateByLocalIdAndMap(u8, u8, u8);
-static void LoadObjectEventPalette(u16);
 static void RemoveObjectEventIfOutsideView(struct ObjectEvent *);
 static void SpawnObjectEventOnReturnToField(u8, s16, s16);
 static void SetPlayerAvatarObjectEventIdAndObjectId(u8, u8);
@@ -505,6 +505,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
 #endif
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_Brendan[] = {
     OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION,
     OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION,
@@ -512,6 +513,7 @@ static const u16 sReflectionPaletteTags_Brendan[] = {
     OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_May[] = {
     OBJ_EVENT_PAL_TAG_MAY_REFLECTION,
     OBJ_EVENT_PAL_TAG_MAY_REFLECTION,
@@ -519,6 +521,7 @@ static const u16 sReflectionPaletteTags_May[] = {
     OBJ_EVENT_PAL_TAG_MAY_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_PlayerUnderwater[] = {
     OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER,
     OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER,
@@ -526,6 +529,7 @@ static const u16 sReflectionPaletteTags_PlayerUnderwater[] = {
     OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER,
 };
 
+// DELETE IF OK //
 static const struct PairedPalettes sPlayerReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_BRENDAN,           sReflectionPaletteTags_Brendan},
     {OBJ_EVENT_PAL_TAG_MAY,               sReflectionPaletteTags_May},
@@ -533,6 +537,7 @@ static const struct PairedPalettes sPlayerReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_NONE,              NULL},
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_QuintyPlump[] = {
     OBJ_EVENT_PAL_TAG_QUINTY_PLUMP_REFLECTION,
     OBJ_EVENT_PAL_TAG_QUINTY_PLUMP_REFLECTION,
@@ -540,6 +545,7 @@ static const u16 sReflectionPaletteTags_QuintyPlump[] = {
     OBJ_EVENT_PAL_TAG_QUINTY_PLUMP_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_Truck[] = {
     OBJ_EVENT_PAL_TAG_TRUCK,
     OBJ_EVENT_PAL_TAG_TRUCK,
@@ -547,6 +553,7 @@ static const u16 sReflectionPaletteTags_Truck[] = {
     OBJ_EVENT_PAL_TAG_TRUCK,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_VigorothMover[] = {
     OBJ_EVENT_PAL_TAG_VIGOROTH,
     OBJ_EVENT_PAL_TAG_VIGOROTH,
@@ -554,6 +561,7 @@ static const u16 sReflectionPaletteTags_VigorothMover[] = {
     OBJ_EVENT_PAL_TAG_VIGOROTH,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_MovingBox[] = {
     OBJ_EVENT_PAL_TAG_MOVING_BOX,
     OBJ_EVENT_PAL_TAG_MOVING_BOX,
@@ -561,6 +569,8 @@ static const u16 sReflectionPaletteTags_MovingBox[] = {
     OBJ_EVENT_PAL_TAG_MOVING_BOX,
 };
 
+// DELETE IF OK //
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_CableCar[] = {
     OBJ_EVENT_PAL_TAG_CABLE_CAR,
     OBJ_EVENT_PAL_TAG_CABLE_CAR,
@@ -568,6 +578,7 @@ static const u16 sReflectionPaletteTags_CableCar[] = {
     OBJ_EVENT_PAL_TAG_CABLE_CAR,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_SSTidal[] = {
     OBJ_EVENT_PAL_TAG_SSTIDAL,
     OBJ_EVENT_PAL_TAG_SSTIDAL,
@@ -575,6 +586,7 @@ static const u16 sReflectionPaletteTags_SSTidal[] = {
     OBJ_EVENT_PAL_TAG_SSTIDAL,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_SubmarineShadow[] = {
     OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW,
     OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW,
@@ -582,6 +594,7 @@ static const u16 sReflectionPaletteTags_SubmarineShadow[] = {
     OBJ_EVENT_PAL_TAG_SUBMARINE_SHADOW,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_Kyogre[] = {
     OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION,
     OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION,
@@ -589,6 +602,7 @@ static const u16 sReflectionPaletteTags_Kyogre[] = {
     OBJ_EVENT_PAL_TAG_KYOGRE_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_Groudon[] = {
     OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION,
     OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION,
@@ -596,6 +610,7 @@ static const u16 sReflectionPaletteTags_Groudon[] = {
     OBJ_EVENT_PAL_TAG_GROUDON_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_Npc3[] = { // Only used by the Route 120 bridge Kecleon
     OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION,
     OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION,
@@ -603,6 +618,7 @@ static const u16 sReflectionPaletteTags_Npc3[] = { // Only used by the Route 120
     OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 sReflectionPaletteTags_RedLeaf[] = {
     OBJ_EVENT_PAL_TAG_RED_LEAF,
     OBJ_EVENT_PAL_TAG_RED_LEAF,
@@ -610,6 +626,7 @@ static const u16 sReflectionPaletteTags_RedLeaf[] = {
     OBJ_EVENT_PAL_TAG_RED_LEAF,
 };
 
+// DELETE IF OK //
 static const struct PairedPalettes sSpecialObjectReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_BRENDAN,          sReflectionPaletteTags_Brendan},
     {OBJ_EVENT_PAL_TAG_MAY,              sReflectionPaletteTags_May},
@@ -627,6 +644,7 @@ static const struct PairedPalettes sSpecialObjectReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_NONE,             NULL},
 };
 
+// DELETE IF OK //
 static const u16 sObjectPaletteTags0[] = {
     [PALSLOT_PLAYER]            = OBJ_EVENT_PAL_TAG_BRENDAN,
     [PALSLOT_PLAYER_REFLECTION] = OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION,
@@ -640,6 +658,7 @@ static const u16 sObjectPaletteTags0[] = {
     [PALSLOT_NPC_4_REFLECTION]  = OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 sObjectPaletteTags1[] = {
     [PALSLOT_PLAYER]            = OBJ_EVENT_PAL_TAG_BRENDAN,
     [PALSLOT_PLAYER_REFLECTION] = OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION,
@@ -653,6 +672,7 @@ static const u16 sObjectPaletteTags1[] = {
     [PALSLOT_NPC_4_REFLECTION]  = OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 sObjectPaletteTags2[] = {
     [PALSLOT_PLAYER]            = OBJ_EVENT_PAL_TAG_BRENDAN,
     [PALSLOT_PLAYER_REFLECTION] = OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION,
@@ -666,6 +686,7 @@ static const u16 sObjectPaletteTags2[] = {
     [PALSLOT_NPC_4_REFLECTION]  = OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 sObjectPaletteTags3[] = {
     [PALSLOT_PLAYER]            = OBJ_EVENT_PAL_TAG_BRENDAN,
     [PALSLOT_PLAYER_REFLECTION] = OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION,
@@ -679,6 +700,7 @@ static const u16 sObjectPaletteTags3[] = {
     [PALSLOT_NPC_4_REFLECTION]  = OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION,
 };
 
+// DELETE IF OK //
 static const u16 *const sObjectPaletteTagSets[] = {
     sObjectPaletteTags0,
     sObjectPaletteTags1,
@@ -1381,10 +1403,14 @@ void RemoveObjectEventByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup)
 
 static void RemoveObjectEventInternal(struct ObjectEvent *objectEvent)
 {
+    u8 paletteNum;
+
     struct SpriteFrameImage image;
     image.size = GetObjectEventGraphicsInfo(objectEvent->graphicsId)->size;
     gSprites[objectEvent->spriteId].images = &image;
+    paletteNum = gSprites[objectEvent->spriteId].oam.paletteNum;
     DestroySprite(&gSprites[objectEvent->spriteId]);
+    FieldEffectFreePaletteIfUnused(paletteNum);
 }
 
 void RemoveAllObjectEventsExceptPlayer(void)
@@ -1401,7 +1427,7 @@ void RemoveAllObjectEventsExceptPlayer(void)
 static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTemplate, struct SpriteTemplate *spriteTemplate, u8 mapNum, u8 mapGroup, s16 cameraX, s16 cameraY)
 {
     u8 spriteId;
-    u8 paletteSlot;
+    // u8 paletteSlot;
     u8 objectEventId;
     struct Sprite *sprite;
     struct ObjectEvent *objectEvent;
@@ -1413,25 +1439,32 @@ static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTempl
 
     objectEvent = &gObjectEvents[objectEventId];
     graphicsInfo = GetObjectEventGraphicsInfo(objectEvent->graphicsId);
-    paletteSlot = graphicsInfo->paletteSlot;
-    if (paletteSlot == PALSLOT_PLAYER)
+    if (spriteTemplate->paletteTag != TAG_NONE)
     {
-        LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag, paletteSlot);
+        LoadObjectEventPalette(spriteTemplate->paletteTag);
+        UpdatePaletteColorMapType(IndexOfSpritePaletteTag(spriteTemplate->paletteTag), COLOR_MAP_CONTRAST);
     }
-    else if (paletteSlot == PALSLOT_NPC_SPECIAL)
-    {
-        LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, paletteSlot);
-    }
-    else if (paletteSlot >= 16)
-    {
-        paletteSlot -= 16;
-        _PatchObjectPalette(graphicsInfo->paletteTag, paletteSlot);
-    }
+    // DELETE //
+    // paletteSlot = graphicsInfo->paletteSlot;
+    // if (paletteSlot == PALSLOT_PLAYER)
+    // {
+    //     LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag, paletteSlot);
+    // }
+    // else if (paletteSlot == PALSLOT_NPC_SPECIAL)
+    // {
+    //     LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, paletteSlot);
+    // }
+    // else if (paletteSlot >= 16)
+    // {
+    //     paletteSlot -= 16;
+    //     _PatchObjectPalette(graphicsInfo->paletteTag, paletteSlot);
+    // }
 
     if (objectEvent->movementType == MOVEMENT_TYPE_INVISIBLE)
         objectEvent->invisible = TRUE;
 
-    *(u16 *)&spriteTemplate->paletteTag = TAG_NONE;
+    // DELETE //
+    // *(u16 *)&spriteTemplate->paletteTag = TAG_NONE;
     spriteId = CreateSprite(spriteTemplate, 0, 0, 0);
     if (spriteId == MAX_SPRITES)
     {
@@ -1445,7 +1478,8 @@ static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTempl
     sprite->centerToCornerVecY = -(graphicsInfo->height >> 1);
     sprite->x += 8;
     sprite->y += 16 + sprite->centerToCornerVecY;
-    sprite->oam.paletteNum = paletteSlot;
+    // DELETE //
+    // sprite->oam.paletteNum = paletteSlot;
     sprite->coordOffsetEnabled = TRUE;
     sprite->sObjEventId = objectEventId;
     objectEvent->spriteId = spriteId;
@@ -1608,9 +1642,11 @@ u8 CreateVirtualObject(u8 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevatio
         sprite->coordOffsetEnabled = TRUE;
         sprite->sVirtualObjId = virtualObjId;
         sprite->sVirtualObjElev = elevation;
-        if (graphicsInfo->paletteSlot == PALSLOT_NPC_SPECIAL)
-            LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
-        else if (graphicsInfo->paletteSlot >= 16)
+        // DELETE //
+        // if (graphicsInfo->paletteSlot == PALSLOT_NPC_SPECIAL)
+        //     LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
+        // else if (graphicsInfo->paletteSlot >= 16)
+        if (graphicsInfo->paletteSlot >= 16)
             _PatchObjectPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot | 0xf0);
 
         if (subspriteTables != NULL)
@@ -1711,7 +1747,8 @@ void SpawnObjectEventsOnReturnToField(s16 x, s16 y)
 static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
 {
     u8 i;
-    u8 paletteSlot;
+    // DELETE //
+    // u8 paletteSlot;
     struct Sprite *sprite;
     struct ObjectEvent *objectEvent;
     struct SpriteTemplate spriteTemplate;
@@ -1732,22 +1769,27 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
     CopyObjectGraphicsInfoToSpriteTemplate_WithMovementType(objectEvent->graphicsId, objectEvent->movementType, &spriteTemplate, &subspriteTables);
     spriteTemplate.images = &spriteFrameImage;
 
-    *(u16 *)&spriteTemplate.paletteTag = TAG_NONE;
-    paletteSlot = graphicsInfo->paletteSlot;
-    if (paletteSlot == PALSLOT_PLAYER)
+    if (spriteTemplate.paletteTag != TAG_NONE)
     {
-        LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
+        LoadObjectEventPalette(spriteTemplate.paletteTag);
     }
-    else if (paletteSlot == PALSLOT_NPC_SPECIAL)
-    {
-        LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
-    }
-    else if (paletteSlot >= 16)
-    {
-        paletteSlot -= 16;
-        _PatchObjectPalette(graphicsInfo->paletteTag, paletteSlot);
-    }
-    *(u16 *)&spriteTemplate.paletteTag = TAG_NONE;
+    // DELETE //
+    // *(u16 *)&spriteTemplate.paletteTag = TAG_NONE;
+    // paletteSlot = graphicsInfo->paletteSlot;
+    // if (paletteSlot == PALSLOT_PLAYER)
+    // {
+    //     LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
+    // }
+    // else if (paletteSlot == PALSLOT_NPC_SPECIAL)
+    // {
+    //     LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
+    // }
+    // else if (paletteSlot >= 16)
+    // {
+    //     paletteSlot -= 16;
+    //     _PatchObjectPalette(graphicsInfo->paletteTag, paletteSlot);
+    // }
+    // *(u16 *)&spriteTemplate.paletteTag = TAG_NONE;
 
     i = CreateSprite(&spriteTemplate, 0, 0, 0);
     if (i != MAX_SPRITES)
@@ -1767,7 +1809,8 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
         if (subspriteTables != NULL)
             SetSubspriteTables(sprite, subspriteTables);
 
-        sprite->oam.paletteNum = paletteSlot;
+        // DELETE //
+        // sprite->oam.paletteNum = paletteSlot;
         sprite->coordOffsetEnabled = TRUE;
         sprite->sObjEventId = objectEventId;
         objectEvent->spriteId = i;
@@ -1813,10 +1856,11 @@ void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u8 graphicsId)
     {
         PatchObjectPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
     }
-    else if (paletteSlot == PALSLOT_NPC_SPECIAL)
-    {
-        LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
-    }
+    // DELETE //
+    // else if (paletteSlot == PALSLOT_NPC_SPECIAL)
+    // {
+    //     LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
+    // }
     else if (paletteSlot >= 16)
     {
         paletteSlot -= 16;
@@ -1887,9 +1931,13 @@ static void SetBerryTreeGraphics(struct ObjectEvent *objectEvent, struct Sprite 
         if (berryId > ITEM_TO_BERRY(LAST_BERRY_INDEX))
             berryId = 0;
 
+        LoadObjectEventPalette(gBerryTreePaletteTagTablePointers[berryId][berryStage]);
         ObjectEventSetGraphicsId(objectEvent, gBerryTreeObjectEventGraphicsIdTablePointers[berryId][berryStage]);
         sprite->images = gBerryTreePicTablePointers[berryId];
-        sprite->oam.paletteNum = gBerryTreePaletteSlotTablePointers[berryId][berryStage];
+        // DELETE //
+        // sprite->oam.paletteNum = gBerryTreePaletteTagTablePointers[berryId][berryStage];
+        sprite->oam.paletteNum = IndexOfSpritePaletteTag(gBerryTreePaletteTagTablePointers[berryId][berryStage]);
+        UpdatePaletteColorMapType(sprite->oam.paletteNum, COLOR_MAP_CONTRAST);
         StartSpriteAnim(sprite, berryStage);
     }
 }
@@ -1994,7 +2042,7 @@ void FreeAndReserveObjectSpritePalettes(void)
     gReservedSpritePaletteCount = OBJ_PALSLOT_COUNT;
 }
 
-static void LoadObjectEventPalette(u16 paletteTag)
+void LoadObjectEventPalette(u16 paletteTag)
 {
     u16 i = FindObjectEventPaletteIndexByTag(paletteTag);
 
@@ -2054,6 +2102,7 @@ static u8 FindObjectEventPaletteIndexByTag(u16 tag)
     return 0xFF;
 }
 
+// DELETE IF OK //
 void LoadPlayerObjectReflectionPalette(u16 tag, u8 slot)
 {
     u8 i;
@@ -2069,6 +2118,7 @@ void LoadPlayerObjectReflectionPalette(u16 tag, u8 slot)
     }
 }
 
+// DELETE IF OK //
 void LoadSpecialObjectReflectionPalette(u16 tag, u8 slot)
 {
     u8 i;
@@ -2523,6 +2573,7 @@ void OverrideSecretBaseDecorationSpriteScript(u8 localId, u8 mapNum, u8 mapGroup
     }
 }
 
+// DELETE IF OK //
 void InitObjectEventPalettes(u8 reflectionType)
 {
     FreeAndReserveObjectSpritePalettes();

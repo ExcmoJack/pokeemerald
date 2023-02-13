@@ -29,6 +29,10 @@ const u8 gWeatherAshTiles[] = INCBIN_U8("graphics/weather/ash.4bpp");
 const u8 gWeatherRainTiles[] = INCBIN_U8("graphics/weather/rain.4bpp");
 const u8 gWeatherSandstormTiles[] = INCBIN_U8("graphics/weather/sandstorm.4bpp");
 
+const struct SpritePalette sFogSpritePalette = {gFogPalette, 0x1201};
+const struct SpritePalette sCloudsSpritePalette = {gCloudsWeatherPalette, 0x1207};
+const struct SpritePalette sSandstormSpritePalette = {gSandstormWeatherPalette, 0x1204};
+
 //------------------------------------------------------------------------------
 // WEATHER_SUNNY_CLOUDS
 //------------------------------------------------------------------------------
@@ -180,7 +184,7 @@ static void CreateCloudSprites(void)
         return;
 
     LoadSpriteSheet(&sCloudSpriteSheet);
-    LoadCustomWeatherSpritePalette(gCloudsWeatherPalette);
+    LoadCustomWeatherSpritePalette(&sCloudsSpritePalette);
     for (i = 0; i < NUM_CLOUD_SPRITES; i++)
     {
         spriteId = CreateSprite(&sCloudSpriteTemplate, 0, 0, 0xFF);
@@ -2138,7 +2142,7 @@ static void CreateSandstormSprites(void)
     if (!gWeatherPtr->sandstormSpritesCreated)
     {
         LoadSpriteSheet(&sSandstormSpriteSheet);
-        LoadCustomWeatherSpritePalette(gSandstormWeatherPalette);
+        LoadCustomWeatherSpritePalette(&sSandstormSpritePalette);
         for (i = 0; i < NUM_SANDSTORM_SPRITES; i++)
         {
             spriteId = CreateSpriteAtEnd(&sSandstormSpriteTemplate, 0, (i / 5) * 64, 1);
